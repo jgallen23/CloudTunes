@@ -1,9 +1,61 @@
-$def with (path)
+<!DOCTYPE HTML>
 <html>
 	<head>
-		<title></title>
+		<title>CloudTunes</title>
+		<link rel="stylesheet" href="static/stylesheets/common.css"/>
+		<script src="static/scripts/app_lawnchair.js"></script>
+		<script src="static/scripts/ajax.js"></script>
+		<script src="static/scripts/controllers/app.js"></script>
+		<script src="static/scripts/services/itunes.js"></script>
+		<script src="static/scripts/views/playlists.js"></script>
+		<script src="static/scripts/views/tracks.js"></script>
+		<script src="static/scripts/views/player.js"></script>
 	</head>
 	<body>
-		<audio src="audio.mp3?path=$path" controls="controls"></audio>
+		<div id="Wrapper">
+			<div id="Playlists" class="Playlists"></div>
+			<div id="Player">
+				<audio controls="controls"></audio>
+				<div id="currentTrack"></div>
+			</div>
+			<div id="Tracks" class="Tracks"></div>
+		</div>
+		<script type="text/html" id="jstPlaylistsView">
+			<ul>
+				{! for (var i = 0; i < playlists.length; i++)  { var playlist = playlists[i]; !}
+					<li data-click="playlist" data-id="{!= playlist.id !}">{!= playlist.name !}</li>
+				{! } !}
+			</ul>
+		</script>
+		<script type="text/html" id="jstTracksView">
+			<span data-click="playPlaylist">Play Current Playlist</span>
+			<table>
+				<tr>
+					<th>Play</th>
+					<th>Artist</th>
+					<th>Album</th>
+					<th>Track</th>
+					<th>Rating</th>
+				</tr>
+				{! for (var i = 0; i < tracks.length; i++) { var track = tracks[i]; !}
+					<tr data-index="{!= i !}">
+						<td><span data-click="play" data-location="{!= track.location !}">play</span></td>
+						<td>{!= track.artist !}</td>
+						<td>{!= track.album !}</td>
+						<td>{!= track.name !}</td>
+						<td>{!= track.rating !}</td>
+					</tr>
+				{! } !}
+			</table>
+		</script>
+		<script type="text/html" id="jstCurrentTrackView">
+			<div>Artist: {!= currentTrack.artist !}</div>
+			<div>Album: {!= currentTrack.album !}</div>
+			<div>Track: {!= currentTrack.name !}</div>
+			<span data-click="viewCurrent">View Current</span>
+			<span data-click="next">Next<span>
+			<span data-click="previous">Previous</span>
+		</script>
+		<script>var app = new AppController();</script>
 	</body>
 </html>

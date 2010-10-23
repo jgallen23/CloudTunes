@@ -30,7 +30,7 @@ class iTunes(object):
                 'artist': track.artist(),
                 'album': track.album(),
                 'rating': track.rating(),
-                'location': str(ftrack.location())
+                'location': str(ftrack.location()).replace("file://localhost", "")
             }
             data.append(obj)
         return data

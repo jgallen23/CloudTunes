@@ -1,0 +1,7 @@
+#Wrapper { width: 100%; }
+.Playlists { float: left; width: 150px; }
+	.Playlists ul { list-style: none; padding: 0; margin: 0; } 
+		.Playlists ul li { padding: 3px 0; } 
+
+.Tracks { width: 100%; padding-left: 200px; }
+	.Tracks table { width: 100%; } 

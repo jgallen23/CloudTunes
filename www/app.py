@@ -14,11 +14,10 @@ app = web.application(urls, globals())
 
 class index:
     def GET(self):
-        path = ''
         render = web.template.render('templates')
         #pool = NSAutoreleasePool.alloc().init()
         #del pool
-        return render.index(urllib.quote(path))
+        return render.index()
 
 class audio:
     def GET(self):

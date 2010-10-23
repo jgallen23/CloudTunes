@@ -1,0 +1,4 @@
+var iTunesService = function() {
+	return {
+	}
+}();
